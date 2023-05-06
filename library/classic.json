@@ -1038,7 +1038,7 @@
 			,
 			{
 				"description": "Default Code",
-				"codeOriginal": "(t*(-t>>8&15|t>>10&5)&128)+(random()*64|t>>5)"
+				"codeOriginal": "(t*(-t>>8&15|t>>10&5)&128)+(random()*64|t>>5)",
 				"date": " ",
 				"url": "http://whiteurl.com",
 			}
