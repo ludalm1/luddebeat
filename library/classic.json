@@ -1034,11 +1034,13 @@
 				"date": "2023-03-23",
 				"url": "https://www.reddit.com/r/bytebeat/comments/11zgafh/notral/",
 				"sampleRate": 11025
-			},{
+			}
+			,
+			{
 				"description": "Default Code",
 				"codeOriginal": "(t*(-t>>8&15|t>>10&5)&128)+(random()*64|t>>5)"
-				"date": "",
-				"url": "",
+				"date": " ",
+				"url": "http://whiteurl.com",
 			}
 		]
 	},
