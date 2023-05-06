@@ -1039,8 +1039,8 @@
 			{
 				"description": "Default Code",
 				"codeOriginal": "(t*(-t>>8&15|t>>10&5)&128)+(random()*64|t>>5)",
-				"date": "6th May, 2023",
-				"url": "",
+				"date": "2023-05-06",
+				"url": ""
 			},
 		]
 	},
