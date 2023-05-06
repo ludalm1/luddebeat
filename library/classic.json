@@ -1031,6 +1031,7 @@
 			{
 				"description": "not%ral",
 				"codeOriginal": "t%255|(t&t>>2|t>>5)",
+				"codeMinified": "t%255|t&t>>2|t>>5",
 				"date": "2023-03-23",
 				"url": "https://www.reddit.com/r/bytebeat/comments/11zgafh/notral/",
 				"sampleRate": 11025
@@ -1042,7 +1043,7 @@
 				"date": "2023-05-06",
 				"url": ""
 			}
-		]
+        ]
 	},
 	{
 		"codeOriginal": "t*(t&-(t>>8)&t>>(t>>15)&t>>(t>>15))",
