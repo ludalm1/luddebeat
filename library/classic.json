@@ -1003,59 +1003,6 @@
 		"starred": 1
 	},
 	{
-		"author": "u/T_yknow",
-		"children": [
-			{
-				"description": "bitbeat thingy",
-				"codeOriginal": "t>>4&t>>10|t>>8&t>>11|t>>5&t>>12",
-				"date": "2023-03-21",
-				"mode": "Bitbeat",
-				"url": "https://www.reddit.com/r/bytebeat/comments/11xcxyy/bitbeat_thingy/"
-			},
-			{
-				"description": "another bitbeat thingy",
-				"codeOriginal": "(t%255&t%257)>>6|t>>5&(t%255)>>6",
-				"date": "2023-03-21",
-				"mode": "Bitbeat",
-				"url": "https://www.reddit.com/r/bytebeat/comments/11xe1zr/another_bitbeat_thingy/"
-			},
-			{
-				"description": "yet another bitbeat thingy",
-				"codeOriginal": "t>>(t&2048?5:4)+(t&8192?1:0)",
-				"date": "2023-03-21",
-				"mode": "Bitbeat",
-				"url": "https://www.reddit.com/r/bytebeat/comments/11xe98r/yet_another_bitbeat_thingy/",
-				"sampleRate": 16000
-			}
-			,
-			{
-				"description": "not%ral",
-				"codeOriginal": "t%255|(t&t>>2|t>>5)",
-				"codeMinified": "t%255|t&t>>2|t>>5",
-				"date": "2023-03-23",
-				"url": "https://www.reddit.com/r/bytebeat/comments/11zgafh/notral/",
-				"sampleRate": 11025
-			}
-			,
-			{
-				"description": "Default Code",
-				"codeOriginal": "(t*(-t>>8&15|t>>10&5)&128)+(random()*64|t>>5)",
-				"date": "2023-05-06",
-				"url": ""
-			},{
-				"description": "red relief",
-				"codeOriginal": "isNaN(t%(256%((t>>4)%256)))?255:t%(256%((t>>4)%256))",
-				"date": "2023-07-06",
-				"url": ""
-			},{
-				"description": "unable to rise",
-				"codeOriginal": "t>>7&t*(-t>>8&t>>10&31)",
-				"date": "2023-07-06",
-				"url": ""
-			}
-                 ]
-	},
-	{
 		"codeOriginal": "t*(t&-(t>>8)&t>>(t>>15)&t>>(t>>15))",
 		"author": "cokufaqikk#6481",
 		"date": "2023-01-04",
