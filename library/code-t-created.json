@@ -61,7 +61,7 @@
 				"description": "mad serpinski harmony",
 				"sampleRate": 32000,
 				"date": "2023-07-06",
-				"codeOriginal": "((t&t%255)-(t%257)|t%255&t%257)&t>>10"
+				"codeOriginal": "((t&t%255)-(t%257)|t%255&t%257)&t>>10",
 				"url": ""
 			}
   ]
