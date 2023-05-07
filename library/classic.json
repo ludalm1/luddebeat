@@ -222,6 +222,7 @@
 				"description": "color changer",
 				"author": "T",
 				"date": "2023-07-06",
+				"stereo": true,
 				"codeOriginal": "[(2*t&255)*(t>>6&255)>>8,(2*t&255)*(-t>>6&255)>>8]"
 			}]
 		}]
