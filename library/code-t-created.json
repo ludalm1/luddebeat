@@ -63,5 +63,11 @@
 				"date": "2023-07-06",
 				"codeOriginal": "((t&t%255)-(t%257)|t%255&t%257)&t>>10",
 				"url": ""
+			},{
+				"description": "IM BANGING ON THE DOOR, I WANNA SEE THE INSIDE OF YOUR HOUSE!"
+				"sampleRate": 32000,
+				"date": "2023-07-06",
+				"codeOriginal": "random()*(-t>>6&255)^t&t>>7",
+				"url": ""
 			}
   ]
