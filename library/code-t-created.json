@@ -51,5 +51,10 @@
 				"codeOriginal": "t*(-(t>>8&t>>9|t>>10)&15|t>>12&15)",
 				"date": "2023-07-06",
 				"url": ""
+			},{
+				"description": "color changer",
+				"codeOriginal": "[(2*t&255)*(t>>6&255)>>8,(2*t&255)*(-t>>6&255)>>8]",
+				"date": "2023-07-06",
+				"url": ""
 			}
   ]
