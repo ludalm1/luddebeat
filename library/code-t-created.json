@@ -46,5 +46,10 @@
 				"codeOriginal": "t>>7&t*(-t>>8&t>>10&31)",
 				"date": "2023-07-06",
 				"url": ""
+			},{
+				"description": "15 melody (goofy)",
+				"codeOriginal": "t*(-(t>>8&t>>9|t>>10)&15|t>>12&15)",
+				"date": "2023-07-06",
+				"url": ""
 			}
   ]
