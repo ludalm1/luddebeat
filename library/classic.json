@@ -186,7 +186,7 @@
 			["raer", "http://www.pouet.net/topic.php?which=8357&page=4#c388494"]],
 		"date": "2011-09-30",
 		"codeOriginal": "(t&4096)?((t*(t^t%255)|(t>>4))>>1):(t>>3)|((t&8192)?t<<2:t)",
-		"codeMinified": "t&4096?(t*(t^t%255)|t>>4)>>1:t>>3|(t&8192?t<<2:t)",
+		"codeMinified": "t&4096?(t*(t^t%255)|t>>4)>>1:t>>3|(t&8192?t*4:t)",
 		"starred": 2
 	}, {
 		"description": "I'm late to the party",
