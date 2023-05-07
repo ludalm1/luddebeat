@@ -214,8 +214,16 @@
 			"codeMinified": "(t/4&244)>>t/((t>>14&3)+4)"
 		}, {
 			"description": "simple repeating bass",
-			"codeOriginal": "((2*t&255)*(((-t)>>6)&0xff))>>8",
-			"codeMinified": "(2*t&255)*(-t>>6&255)>>8"
+			"children": [
+			{
+			        "codeOriginal": "((2*t&255)*(((-t)>>6)&0xff))>>8",
+			        "codeMinified": "(2*t&255)*(-t>>6&255)>>8"
+			},{
+				"description": "color changer",
+				"author": "T",
+				"date": "2023-07-06",
+				"codeOriginal": "[(2*t&255)*(t>>6&255)>>8,(2*t&255)*(-t>>6&255)>>8]"
+			}]
 		}]
 	}, {
 		"description": "a quite complex one using conditionals",
