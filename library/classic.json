@@ -1042,6 +1042,11 @@
 				"codeOriginal": "(t*(-t>>8&15|t>>10&5)&128)+(random()*64|t>>5)",
 				"date": "2023-05-06",
 				"url": ""
+			},{
+				"description": "red relief",
+				"codeOriginal": "isNaN(t%(256%((t>>4)%256)))?255:t%(256%((t>>4)%256))",
+				"date": "2023-07-06",
+				"url": ""
 			}
         ]
 	},
