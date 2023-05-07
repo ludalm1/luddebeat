@@ -1049,11 +1049,11 @@
 				"url": ""
 			},{
 				"description": "unable to rise",
-				"codeOriginal": "t>>7&t*(-t>>8&t>>10&31)"
+				"codeOriginal": "t>>7&t*(-t>>8&t>>10&31)",
 				"date": "2023-07-06",
 				"url": ""
 			}
-        ]
+                 ]
 	},
 	{
 		"codeOriginal": "t*(t&-(t>>8)&t>>(t>>15)&t>>(t>>15))",
