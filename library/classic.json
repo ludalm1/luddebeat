@@ -1047,6 +1047,11 @@
 				"codeOriginal": "isNaN(t%(256%((t>>4)%256)))?255:t%(256%((t>>4)%256))",
 				"date": "2023-07-06",
 				"url": ""
+			},{
+				"description": "unable to rise",
+				"codeOriginal": "t>>7&t*(-t>>8&t>>10&31)"
+				"date": "2023-07-06",
+				"url": ""
 			}
         ]
 	},
