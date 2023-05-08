@@ -69,5 +69,10 @@
 				"date": "2023-07-06",
 				"codeOriginal": "random()*(-t>>6&255)^t&t>>7",
 				"url": ""
+			},{
+				"description": "the stupid (remix of minimal seprinski harmony)",
+				"date": "2023-08-06",
+				"codeOriginal": "((t>>8)*-t&t>>8)-(t>>8)"
+				"url": ""
 			}
 ]
