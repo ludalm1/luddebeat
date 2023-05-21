@@ -83,6 +83,8 @@
 				"description": "gyudfzvx",
 				"date": "2023-??-??",
 				"codeOriginal": "y=t/6,r=y*(t>>12&3),sin(r>>(r>>(t>>12&7)&15))",
+				"sampleRate": 48000,
+				"mode": "Floatbeat",
 				"url": ""
 			}
 ]
