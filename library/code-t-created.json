@@ -80,9 +80,9 @@
 				"codeOriginal": "((t*((t>>10|t>>13)&7)/2&127)+((t*((t>>11|t>>13)&15)/2&127)))/1.5",
 				"url": ""
 			},{
-				"description": "gyudfzvx"
-				"date": "2023-??-??"
-				"codeOriginal": "y=t/6,r=y*(t>>12&3),sin(r>>(r>>(t>>12&7)&15))"
+				"description": "gyudfzvx",
+				"date": "2023-??-??",
+				"codeOriginal": "y=t/6,r=y*(t>>12&3),sin(r>>(r>>(t>>12&7)&15))",
 				"url": ""
 			}
 ]
