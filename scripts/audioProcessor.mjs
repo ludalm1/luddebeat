@@ -201,34 +201,34 @@ class audioProcessor extends AudioWorkletProcessor {
 				};
 				break;
 				case 'sinmode':
-					this.getValues = (funcValue, ch) => (this.lastByteValue[ch] = (Math.sin(funcValue)*32)) / 127.5 - 1;
+					this.getValues = (funcValue, ch) => (this.lastByteValue[ch] = (Math.sin(funcValue) * 32)) / 127.5 - 1;
 					break;
 				case 'cosmode':
-					this.getValues = (funcValue, ch) => (this.lastByteValue[ch] = (Math.cos(funcValue)*32)) / 127.5 - 1;
+					this.getValues = (funcValue, ch) => (this.lastByteValue[ch] = (Math.cos(funcValue) * 32)) / 127.5 - 1;
 					break;
 				case 'absmode':
-					this.getValues = (funcValue, ch) => (this.lastByteValue[ch] = (Math.abs(funcValue)*32)&255) / 127.5 - 1;
+					this.getValues = (funcValue, ch) => (this.lastByteValue[ch] = (Math.abs(funcValue) * 32)&255) / 127.5 - 1;
 					break;
 				case 'cbrtmode':
-					this.getValues = (funcValue, ch) => (this.lastByteValue[ch] = (Math.cbrt(funcValue)*32)&255) / 127.5 - 1;
+					this.getValues = (funcValue, ch) => (this.lastByteValue[ch] = (Math.cbrt(funcValue) * 32)&255) / 127.5 - 1;
 					break;
 				case 'sinhmode':
-					this.getValues = (funcValue, ch) => (this.lastByteValue[ch] = (Math.sinh(funcValue)*32)) / 127.5 - 1;
+					this.getValues = (funcValue, ch) => (this.lastByteValue[ch] = (Math.sinh(funcValue) * 32)) / 127.5 - 1;
 					break;
 				case 'coshmode':
-					this.getValues = (funcValue, ch) => (this.lastByteValue[ch] = (Math.cos(funcValue)*32)) / 127.5 - 1;
+					this.getValues = (funcValue, ch) => (this.lastByteValue[ch] = (Math.cos(funcValue) * 32)) / 127.5 - 1;
 					break;
 				case 'asinmode':
-					this.getValues = (funcValue, ch) => (this.lastByteValue[ch] = (Math.asin(funcValue)*32)) / 127.5 - 1;
+					this.getValues = (funcValue, ch) => (this.lastByteValue[ch] = (Math.asin(funcValue) * 32)) / 127.5 - 1;
 					break;
 				case 'acosmode':
-					this.getValues = (funcValue, ch) => (this.lastByteValue[ch] = (Math.acos(funcValue)*32)) / 127.5 - 1;
+					this.getValues = (funcValue, ch) => (this.lastByteValue[ch] = (Math.acos(funcValue) * 32)) / 127.5 - 1;
 					break;
 				case 'log10mode':
-					this.getValues = (funcValue, ch) => (this.lastByteValue[ch] = (Math.log10(funcValue)*32)&255) / 127.5 - 1;
+					this.getValues = (funcValue, ch) => (this.lastByteValue[ch] = (Math.log10(funcValue) * 32)&255) / 127.5 - 1;
 					break;
 				case 'sqrtmode':
-					this.getValues = (funcValue, ch) => (this.lastByteValue[ch] = (Math.sqrt(funcValue)*32)&255) / 127.5 - 1;
+					this.getValues = (funcValue, ch) => (this.lastByteValue[ch] = (Math.sqrt(funcValue) * 32)&255) / 127.5 - 1;
 					break;
 		 		case 'sinfmode':
 					this.getValues = (funcValue, ch) => (this.lastByteValue[ch] = (Math.sin(funcValue*Math.PI/128+0.01)*32)) / 127.5 - 1;
