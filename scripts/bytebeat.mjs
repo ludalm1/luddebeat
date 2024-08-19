@@ -929,7 +929,7 @@ globalThis.bytebeat = new class {
 			songData.mode = this.songData.mode;
 		}
 		this.setCodeSize(code.length);
-		window.location.hash = `#GFLJBeat2-${btoa(String.fromCharCode.apply(undefined,
+		window.location.hash = `#EnBeat2-${btoa(String.fromCharCode.apply(undefined,
 			deflateRaw(JSON.stringify(songData)))).replaceAll('=', '')}`;
 	}
 }();
