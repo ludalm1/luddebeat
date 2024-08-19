@@ -296,7 +296,7 @@ globalThis.MAT = new class { //Menus and transformations
 			let temp4 = btoa(temp3.toString(36)).replace('==','').replace('=','')
 			let finalSeed = (temp2 + ":" + temp4)
 			if(forTitle){
-				this.tabName.innerText = "CHYX: " + finalSeed
+				this.tabName.innerText = "GFJS: " + finalSeed
 			}
 		return finalSeed
 	}
