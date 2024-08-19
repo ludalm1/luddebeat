@@ -407,7 +407,7 @@ button[name="close"] {
 	cursor: default;
 }
 
-#control-codesize, #control-counter, #control-samplerate {
+#control-codesize, #control-counter, #control-samplerate, #control-divisor, #control-parens {
 	height: var(--control-size);
 	padding: 0 4px;
 	background: linear-gradient(to top, #b88100, #b8b500);
@@ -416,6 +416,7 @@ button[name="close"] {
 	font: bold var(--font-size)/var(--control-size) monospace;
 	box-shadow: inset 0 0 12px rgba(202, 202, 202, 0.5);
 }
+
 
 #control-counter {
 	width: 88px;
