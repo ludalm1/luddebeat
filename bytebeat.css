@@ -10,7 +10,7 @@ html {
 	color-scheme: dark;
 	background-color: #000;
 	color: #c5c8c6;
-	font: var(--font-size) sans-serif;
+	font: var(--font-size) monospace;
 }
 
 body {
@@ -18,15 +18,15 @@ body {
 }
 
 a, a:visited {
-	color: #ca89ff;
+	color: #89c2ff;
 }
 
 a:hover {
-	color: #88eefb !important;
+	color: #a8c200 !important;
 }
 
 :focus-visible {
-	outline: 2px solid #614fdb;
+	outline: 2px solid #c26100;
 }
 
 .hidden {
@@ -42,6 +42,16 @@ option {
 
 .container-expanded {
 	height: 100%;
+}
+
+div#disabled-msg {
+	position: absolute;
+	top: 33%;
+	left: 33%;
+	background-color: #0000FF;
+	color: black;
+	padding-left: 32px;
+	padding-right: 32px;
 }
 
 .container-expanded + #container-scroll {
@@ -80,7 +90,7 @@ footer {
 	flex-shrink: 0;
 	position: relative;
 	box-sizing: border-box;
-	border: 2px solid #fda757;
+	border: 2px solid #ff8800;
 	overflow: hidden;
 	cursor: pointer;
 }
@@ -94,8 +104,8 @@ footer {
 	position: absolute;
 	top: 0;
 	bottom: 0;
-	border-left: 2px solid #7a9dc4;
-	box-shadow: 0 0 8px #6ab2ff, 0 0 16px #fff;
+	border-left: 2px solid blue;
+	box-shadow: 0 0 8px #00bbc2, 0 0 16px #fff;
 	left: 0;
 }
 
@@ -103,12 +113,12 @@ footer {
 
 #canvas-container:hover > #canvas-play {
 	display: block;
-	background-image: linear-gradient(to bottom, #c765bf, #331832) !important;
+	background-image: linear-gradient(to bottom, #bbc200, #c27e00) !important;
 }
 
 .canvas-initial {
 	display: block !important;
-	background-image: linear-gradient(to bottom, #9b3c8b, #331833);
+	background-image: linear-gradient(to bottom, #878300, #876300);
 }
 
 .canvas-pause > #svg-canvas-play, .canvas-play > #svg-canvas-pause {
@@ -149,7 +159,7 @@ button[name="close"] {
 
 #editor-container {
 	width: calc(100% - 4px);
-	height: 200px;
+	height: 256px;
 	border: 2px solid #bac2cc;
 	resize: vertical;
 	overflow: hidden;
@@ -213,7 +223,7 @@ button[name="close"] {
 }
 
 #error {
-	color: #f92672;
+	color: #f5db00;
 	word-break: break-all;
 }
 
@@ -228,7 +238,7 @@ button[name="close"] {
 	margin: 0;
 	padding: 0;
 	border: none;
-	color: #ffd153;
+	color: #ffcc53;
 	background: none;
 	font: var(--font-size)/16px monospace;
 	text-align: left;
@@ -241,7 +251,7 @@ button[name="close"] {
 }
 
 .code-text:hover {
-	color: #3fe2e2 !important;
+	color: #9fc4dc !important;
 }
 
 .code-button {
@@ -249,15 +259,15 @@ button[name="close"] {
 	padding: 2px 6px;
 	border: none;
 	border-radius: 3px;
-	background-image: linear-gradient(to bottom, #171b22, #bb21b3);
+	background-image: linear-gradient(to bottom, #424242, #171b22);
 	color: #ced5e1;
-	font: var(--font-size)/var(--font-size) sans-serif;
+	font: var(--font-size)/var(--font-size) monospace;
 	white-space: nowrap;
 	cursor: pointer;
 }
 
 .code-button:hover {
-	background-image: linear-gradient(to bottom, #473545, #dd2ec6);
+	background-image: linear-gradient(to bottom, #3c508a, #1f2331);
 	color: #c2dfff;
 }
 
@@ -291,7 +301,7 @@ button[name="close"] {
 	margin-left: 11px;
 }
 
-.entry.star-white::before, .entry.star-green::before {
+.entry.star-white::before, .entry.star-yellow::before {
 	content: "\2605";
 	position: absolute;
 	top: 0;
@@ -303,8 +313,8 @@ button[name="close"] {
 	color: white;
 }
 
-.entry.star-green::before {
-	color: #00ff62;
+.entry.star-yellow::before {
+	color: aqua;
 }
 
 .entry-top {
@@ -327,12 +337,12 @@ button[name="close"] {
 .library-header {
 	padding: 4px 8px;
 	border-radius: 3px;
-	background-image: linear-gradient(to bottom, #462040, #0b170c);
+	background-image: linear-gradient(to bottom, #000000, #0b0d17);
 	cursor: pointer;
 }
 
 .library-header:hover, .library-header:focus-visible {
-	background-image: linear-gradient(to bottom, #6c3264, #29152b);
+	background-image: linear-gradient(to bottom, #a8ad00, #ad7400);
 	color: #94c7ff;
 }
 
@@ -361,47 +371,15 @@ button[name="close"] {
 
 /* ==[ Controls ] ========================================================================================= */
 
-.control-button, .control-select, .control-indicator {
+.control-button, .control-select {
 	height: var(--control-size);
 	padding: 0;
 	border: none;
 	border-radius: var(--control-corners);
-	background-image: linear-gradient(to bottom, #77426e, #472245);
+	background-image: linear-gradient(to bottom, #ffbb00, #8a8a01);
 	color: #e3e3e3;
-	font: bold var(--font-size)/var(--control-size) sans-serif;
+	font: bold var(--font-size)/var(--control-size) monospace;
 	cursor: pointer;
-}
-
-.danger {
-	background-image: linear-gradient(to bottom, #774242, #472222) !important
-}
-
-.blue {
-	background-image: linear-gradient(to bottom, #4091b1, #2e6f7e) !important	
-}
-
-.light {
-	background-image: linear-gradient(to bottom, #b3b3b3, #7e7e7e) !important;
-	color: black !important;
-}
-
-.dark {
-	background-image: linear-gradient(to bottom, #535353, #7e7e7e) !important;
-	color: white !important;
-}
-
-.light:hover {
-	background-image: linear-gradient(to bottom, #8b8b8b, #555555) !important;
-	color: #005b6b !important;
-}
-
-.dark:hover {
-	background-image: linear-gradient(to bottom, #858585, #a1a1a1) !important;
-	color: #7ff0ff !important;
-}
-
-.tube {
-	border-radius: 0;
 }
 
 .control-button[disabled] {
@@ -410,16 +388,12 @@ button[name="close"] {
 }
 
 .control-button:not([disabled]):hover, .control-select:hover {
-	background-image: linear-gradient(to bottom, #8a5285, #47223f);
-	color: #c2dfff;
+	background-image: linear-gradient(to bottom, #ffbb00, #8a8a01);
+	color: #fff0bf;
 }
 
 .control-button:not([disabled]):active, .control-select:active  {
-	background-image: linear-gradient(to bottom, #633c5e, #472244);
-}
-
-.text-padding {
-	padding: 0 10px 0 10px !important
+	background-image: linear-gradient(to bottom, #c27e00, #bbc200);
 }
 
 .control-button > svg {
@@ -433,10 +407,10 @@ button[name="close"] {
 	cursor: default;
 }
 
-#control-codesize, #control-counter, #control-samplerate, #control-divisor, #control-parens {
+#control-codesize, #control-counter, #control-samplerate {
 	height: var(--control-size);
 	padding: 0 4px;
-	background: linear-gradient(to top, #5e3a5c, #472242);
+	background: linear-gradient(to top, #b88100, #b8b500);
 	color: #e3e3e3;
 	border: none;
 	font: bold var(--font-size)/var(--control-size) monospace;
@@ -505,25 +479,10 @@ button[name="close"] {
 	border-radius: var(--control-corners) 0 0 var(--control-corners);
 }
 
-#control-menu-select {
-	width: 80px;
-	border-radius: var(--control-corners) var(--control-corners) var(--control-corners) var(--control-corners);
-}
-
 #control-samplerate-select {
 	width: 22px;
 	font-size: 0;
 	border-radius: 0 var(--control-corners) var(--control-corners) 0;
-}
-
-#control-parens {
-	width: 30px;
-	border-radius: var(--control-corners) var(--control-corners) var(--control-corners) var(--control-corners);
-}
-
-#control-divisor {
-	width: 40px;
-	border-radius: var(--control-corners) var(--control-corners) var(--control-corners) var(--control-corners);
 }
 
 .control-select {
@@ -532,7 +491,7 @@ button[name="close"] {
 }
 
 .control-select > option {
-	color: #43714d;
+	color: #435071;
 }
 
 #control-volume {
@@ -545,21 +504,17 @@ button[name="close"] {
 	align-self: center;
 }
 
-#tube {
-	border-radius: 0;
-}
-
 #control-volume::-moz-range-thumb {
 	width: 10px;
 	height: var(--control-size);
 	border: none;
 	border-radius: 4px;
-	background-image: linear-gradient(to bottom, #aa57a3, #852f7e);
+	background-image: linear-gradient(to bottom, #c2b800, #c28400);
 	cursor: pointer;
 }
 
 #control-volume::-moz-range-thumb:hover {
-	background-image: linear-gradient(to bottom, #cf57cf, #642c5f);
+	background-image: linear-gradient(to bottom, #f6ff00, #ffc400);
 }
 
 #control-volume::-webkit-slider-thumb {
@@ -568,12 +523,12 @@ button[name="close"] {
 	height: var(--control-size);
 	border: none;
 	border-radius: 4px;
-	background-image: linear-gradient(to bottom, #aeaeae, #852f81);
+	background-image: linear-gradient(to bottom, #c2b800, #c28400);
 	cursor: pointer;
 }
 
 #control-volume::-webkit-slider-thumb:hover {
-	background-image: linear-gradient(to bottom, #d871ca, #852f7e);
+	background-image: linear-gradient(to bottom, #f6ff00, #ffc400);
 }
 
 .controls {
@@ -589,7 +544,7 @@ button[name="close"] {
 }
 
 .controls-group > .control-button {
-	border-left: 1px solid #5c636c;
+	border-left: 1px solid #ff9100;
 	border-radius: 0;
 }
 
@@ -642,3 +597,5 @@ button[name="close"] {
 		resize: none;
 	}
 }
+
+	  
