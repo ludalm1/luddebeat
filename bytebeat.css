@@ -371,7 +371,7 @@ button[name="close"] {
 
 /* ==[ Controls ] ========================================================================================= */
 
-.control-button, .control-select {
+.control-button, .control-select, .control-indicator {
 	height: var(--control-size);
 	padding: 0;
 	border: none;
