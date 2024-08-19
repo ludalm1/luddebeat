@@ -200,6 +200,94 @@ class audioProcessor extends AudioWorkletProcessor {
 					return out / 127.5 - 1
 				};
 				break;
+				case 'sinmode':
+					this.getValues = (funcValue) => ((Math.sin(funcValue) * 32)) / 127.5 - 1;
+					this.getValuesVisualizer = (funcValue) => (((Math.sin(funcValue) * 128) & 255) + 127);
+					break;
+				case 'tanmode':
+					this.getValues = (funcValue) => ((Math.tan(funcValue) * 32) & 255) / 127.5 - 1;
+					this.getValuesVisualizer = (funcValue) => (((Math.tan(funcValue) * 128) & 255) + 127);
+					break;
+				case 'cosmode':
+					this.getValues = (funcValue) => ((Math.cos(funcValue) * 32)) / 127.5 - 1;
+					this.getValuesVisualizer = (funcValue) => (((Math.cos(funcValue) * 128) & 255) + 127);
+					break;
+				case 'absmode':
+					this.getValues = (funcValue) => ((Math.abs(funcValue) * 32) & 255) / 127.5 - 1;
+					this.getValuesVisualizer = (funcValue) => ((Math.abs(funcValue) * 32) & 255);
+					break;
+				case 'cbrtmode':
+					this.getValues = (funcValue) => ((Math.cbrt(funcValue) * 32) & 255) / 127.5 - 1;
+					this.getValuesVisualizer = (funcValue) => (((Math.cbrt(funcValue) * 128) & 255) + 127);
+					break;
+				case 'sinhmode':
+					this.getValues = (funcValue) => ((Math.sinh(funcValue) * 32) & 255) / 127.5 - 1;
+					this.getValuesVisualizer = (funcValue) => (((Math.sinh(funcValue) * 128) & 255) + 127);
+					break;
+				case 'asinmode':
+					this.getValues = (funcValue) => ((Math.asin(funcValue) * 32) & 255) / 127.5 - 1;
+					this.getValuesVisualizer = (funcValue) => (((Math.asin(funcValue) * 128) & 255) + 127);
+					break;
+				case 'coshmode':
+					this.getValues = (funcValue) => ((Math.cosh(funcValue) * 32) & 255) / 127.5 - 1;
+					this.getValuesVisualizer = (funcValue) => (((Math.cosh(funcValue) * 128) & 255) + 127);
+					break;
+				case 'tanhmode':
+					this.getValues = (funcValue) => ((Math.tanh(funcValue) * 32) & 255) / 127.5 - 1;
+					this.getValuesVisualizer = (funcValue) => (((Math.tanh(funcValue) * 128) & 255) + 127);
+					break;
+				case 'acosmode':
+					this.getValues = (funcValue) => ((Math.acos(funcValue) * 32) & 255) / 127.5 - 1;
+					this.getValuesVisualizer = (funcValue) => (((Math.acos(funcValue) * 128) & 255) + 127);
+					break;
+				case 'atanmode':
+					this.getValues = (funcValue) => ((Math.atan(funcValue) * 32) & 255) / 127.5 - 1;
+					this.getValuesVisualizer = (funcValue) => (((Math.atan(funcValue) * 128) & 255) + 127);
+					break;
+				case 'log10mode':
+					this.getValues = (funcValue) => ((Math.log10(funcValue) * 32) & 255) / 127.5 - 1;
+					this.getValuesVisualizer = (funcValue) => (((Math.log10(funcValue) * 128) & 255) + 127);
+					break;
+				case 'sqrtmode':
+					this.getValues = (funcValue) => ((Math.sqrt(funcValue) * 32) & 255) / 127.5 - 1;
+					this.getValuesVisualizer = (funcValue) => ((Math.sqrt(funcValue) * 32) & 255);
+					break;
+				case 'sinfmode':
+					this.getValues = (funcValue) => ((Math.sin(funcValue * Math.PI / 128) * 32)) / 127.5 - 1;
+					this.getValuesVisualizer = (funcValue) => (((Math.sin(funcValue / (128 / Math.PI) + 0.01) * 128) & 255) + 127);
+					break;
+				case 'tanfmode':
+					this.getValues = (funcValue) => ((Math.tan(funcValue * Math.PI / 128)) & 255) / 127.5 - 1;
+					this.getValuesVisualizer = (funcValue) => (((Math.tan(funcValue / (128 / Math.PI) + 0.01) * 128) & 255) + 127);
+					break;
+				case 'cosfmode':
+					this.getValues = (funcValue) => ((Math.cos(funcValue * Math.PI / 128) * 32)) / 127.5 - 1;
+					this.getValuesVisualizer = (funcValue) => (((Math.cos(funcValue / (128 / Math.PI) + 0.01) * 128) & 255) + 127);
+					break;
+				case 'sinmodeold':
+					this.getValues = (funcValue) => ((Math.sin(funcValue) * 32) & 255) / 127.5 - 1;
+					this.getValuesVisualizer = (funcValue) => ((Math.sin(funcValue) * 32) & 255);
+					break;
+				case 'cosmodeold':
+					this.getValues = (funcValue) => ((Math.cos(funcValue) * 32) & 255) / 127.5 - 1;
+					this.getValuesVisualizer = (funcValue) => ((Math.cos(funcValue) * 32) & 255);
+					break;
+				case 'asinmodeold':
+					this.getValues = (funcValue) => ((Math.asin(funcValue) * 32) & 255) / 127.5 - 1;
+					this.getValuesVisualizer = (funcValue) => ((Math.asin(funcValue) * 32) & 255);
+					break;
+				case 'acosmodeold':
+					this.getValues = (funcValue) => ((Math.acos(funcValue) * 32) & 255) / 127.5 - 1;
+					this.getValuesVisualizer = (funcValue) => ((Math.acos(funcValue) * 32) & 255);
+					break;
+				case 'sinhmodeold':
+					this.getValues = (funcValue) => ((Math.sinh(funcValue) * 32) & 255) / 127.5 - 1;
+					this.getValuesVisualizer = (funcValue) => ((Math.sinh(funcValue) * 32) & 255);
+					break;
+				case 'coshmodeold':
+					this.getValues = (funcValue) => ((Math.cosh(funcValue) * 32) & 255) / 127.5 - 1;
+					this.getValuesVisualizer = (funcValue) => ((Math.cosh(funcValue) * 32) & 255);
+					break;
 
 			default: this.getValues = (_funcValue, ch) => (this.lastByteValue[ch] = NaN);
 			}
