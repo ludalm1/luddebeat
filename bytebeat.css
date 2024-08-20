@@ -382,18 +382,54 @@ button[name="close"] {
 	cursor: pointer;
 }
 
+.danger {
+	background-image: linear-gradient(to bottom, #774242, #472222) !important
+}
+
+.blue {
+	background-image: linear-gradient(to bottom, #4091b1, #2e6f7e) !important	
+}
+
+.light {
+	background-image: linear-gradient(to bottom, #b3b3b3, #7e7e7e) !important;
+	color: black !important;
+}
+
+.dark {
+	background-image: linear-gradient(to bottom, #535353, #7e7e7e) !important;
+	color: white !important;
+}
+
+.light:hover {
+	background-image: linear-gradient(to bottom, #8b8b8b, #555555) !important;
+	color: #005b6b !important;
+}
+
+.dark:hover {
+	background-image: linear-gradient(to bottom, #858585, #a1a1a1) !important;
+	color: #7ff0ff !important;
+}
+
+.tube {
+	border-radius: 0;
+}
+
 .control-button[disabled] {
 	opacity: 0.5;
 	cursor: default;
 }
 
 .control-button:not([disabled]):hover, .control-select:hover {
-	background-image: linear-gradient(to bottom, #ffbb00, #8a8a01);
-	color: #fff0bf;
+	background-image: linear-gradient(to bottom, #8a5285, #47223f);
+	color: #c2dfff;
 }
 
 .control-button:not([disabled]):active, .control-select:active  {
-	background-image: linear-gradient(to bottom, #c27e00, #bbc200);
+	background-image: linear-gradient(to bottom, #633c5e, #472244);
+}
+
+.text-padding {
+	padding: 0 10px 0 10px !important
 }
 
 .control-button > svg {
@@ -410,13 +446,12 @@ button[name="close"] {
 #control-codesize, #control-counter, #control-samplerate, #control-divisor, #control-parens {
 	height: var(--control-size);
 	padding: 0 4px;
-	background: linear-gradient(to top, #b88100, #b8b500);
+	background: linear-gradient(to top, #5e3a5c, #472242);
 	color: #e3e3e3;
 	border: none;
 	font: bold var(--font-size)/var(--control-size) monospace;
 	box-shadow: inset 0 0 12px rgba(202, 202, 202, 0.5);
 }
-
 
 #control-counter {
 	width: 88px;
