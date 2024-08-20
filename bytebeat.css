@@ -421,7 +421,7 @@ button[name="close"] {
 
 .control-button:not([disabled]):hover, .control-select:hover {
 	background-image: linear-gradient(to bottom, #ffbb00, #8a8a01);
-	color: #fff0bf;
+	color: #c2dfff;
 }
 
 .control-button:not([disabled]):active, .control-select:active  {
