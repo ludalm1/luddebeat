@@ -332,7 +332,7 @@ class audioProcessor extends AudioWorkletProcessor {
 					};
 					this.getValuesVisualizer = (funcValue) => (Math.floor(funcValue / 32) & 255);
 					break;
-				case 'Doublebeat':
+				case 'doublebeat':
 					this.getValues = (funcValue) => {
 						return Math.max(Math.min(funcValue, 255), -255);
 					};
