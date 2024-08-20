@@ -336,7 +336,7 @@ class audioProcessor extends AudioWorkletProcessor {
 					this.getValues = (funcValue) => {
 						return Math.max(Math.min(funcValue, 255), -255);
 					};
-					this.getValuesVisualizer = (funcValue) => (Math.max(Math.min(funcValue, 255), -254) * 127.5 + 128);
+					this.getValuesVisualizer = (funcValue) => (Math.max(Math.min(funcValue, 255), -255) * 127.5 + 128);
 					break;
 				case 'nolimit':
 					this.getValues = (funcValue) => (funcValue) / 127.5 - 1;
