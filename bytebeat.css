@@ -446,7 +446,7 @@ button[name="close"] {
 #control-codesize, #control-counter, #control-samplerate, #control-divisor, #control-parens {
 	height: var(--control-size);
 	padding: 0 4px;
-	background: linear-gradient(to top, #5e3a5c, #472242);
+	background: linear-gradient(to top, #b88100, #b8b500);
 	color: #e3e3e3;
 	border: none;
 	font: bold var(--font-size)/var(--control-size) monospace;
