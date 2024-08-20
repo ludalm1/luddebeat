@@ -421,15 +421,11 @@ button[name="close"] {
 
 .control-button:not([disabled]):hover, .control-select:hover {
 	background-image: linear-gradient(to bottom, #ffbb00, #8a8a01);
-	color: #c2dfff;
+	color: #fff0bf;
 }
 
 .control-button:not([disabled]):active, .control-select:active  {
 	background-image: linear-gradient(to bottom, #c27e00, #bbc200);
-}
-
-.text-padding {
-	padding: 0 10px 0 10px !important
 }
 
 .control-button > svg {
@@ -443,7 +439,7 @@ button[name="close"] {
 	cursor: default;
 }
 
-#control-codesize, #control-counter, #control-samplerate, #control-divisor, #control-parens {
+#control-codesize, #control-counter, #control-samplerate {
 	height: var(--control-size);
 	padding: 0 4px;
 	background: linear-gradient(to top, #b88100, #b8b500);
@@ -521,17 +517,6 @@ button[name="close"] {
 	border-radius: 0 var(--control-corners) var(--control-corners) 0;
 }
 
-
-#control-parens {
-	width: 30px;
-	border-radius: var(--control-corners) var(--control-corners) var(--control-corners) var(--control-corners);
-}
-
-#control-divisor {
-	width: 40px;
-	border-radius: var(--control-corners) var(--control-corners) var(--control-corners) var(--control-corners);
-}
-
 .control-select {
 	padding-left: 2px;
 	border: none;
@@ -607,6 +592,7 @@ button[name="close"] {
 .controls-grow, .controls-grow > input {
 	flex-grow: 1;
 }
+
 
 /* ==[ Adaptive screen ] ================================================================================== */
 
