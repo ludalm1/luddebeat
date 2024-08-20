@@ -201,18 +201,6 @@ class audioProcessor extends AudioWorkletProcessor {
 					};
 					this.getValuesVisualizer = (funcValue) => (Math.max(Math.min(funcValue, 1), -1) * 127.5 + 128);
 					break;
-				case 'Shortbeat':
-					this.getValues = (funcValue) => {
-						return Math.max(Math.min(funcValue, 32767), -32768);
-					};
-					this.getValuesVisualizer = (funcValue) => (Math.max(Math.min(funcValue, 32767), -32768) * 127.5 + 128);
-					break;
-				case 'Longbeat':
-					this.getValues = (funcValue) => {
-						return Math.max(Math.min(funcValue, 2147483647), -2147483648);
-					};
-					this.getValuesVisualizer = (funcValue) => (Math.max(Math.min(funcValue, 2147483647), -2147483648) * 127.5 + 128);
-					break;
 				case 'Bitbeat':
 					this.getValues = (funcValue) => ((funcValue & 1) - 0.5);
 					this.getValuesVisualizer = (funcValue) => (funcValue & 1 ? 192 : 64);
@@ -331,6 +319,12 @@ class audioProcessor extends AudioWorkletProcessor {
 				case 'coshmodeold':
 					this.getValues = (funcValue) => ((Math.cosh(funcValue) * 32) & 255) / 127.5 - 1;
 					this.getValuesVisualizer = (funcValue) => ((Math.cosh(funcValue) * 32) & 255);
+					break;
+				case '4080':
+					this.getValues = (funcValue) => {
+						return (funcValue & 4079) / 2040 - 1
+					};
+					this.getValuesVisualizer = (funcValue) => (Math.floor(funcValue / 8) & 255);
 					break;
 
 				default: this.getValues = (_funcValue) => NaN;
