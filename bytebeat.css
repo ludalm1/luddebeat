@@ -420,12 +420,12 @@ button[name="close"] {
 }
 
 .control-button:not([disabled]):hover, .control-select:hover {
-	background-image: linear-gradient(to bottom, #8a5285, #47223f);
-	color: #c2dfff;
+	background-image: linear-gradient(to bottom, #ffbb00, #8a8a01);
+	color: #fff0bf;
 }
 
 .control-button:not([disabled]):active, .control-select:active  {
-	background-image: linear-gradient(to bottom, #633c5e, #472244);
+	background-image: linear-gradient(to bottom, #c27e00, #bbc200);
 }
 
 .text-padding {
