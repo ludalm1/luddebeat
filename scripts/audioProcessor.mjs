@@ -332,12 +332,6 @@ class audioProcessor extends AudioWorkletProcessor {
 					};
 					this.getValuesVisualizer = (funcValue) => (Math.floor(funcValue / 32) & 255);
 					break;
-				case '2100':
-					this.getValues = (funcValue) => {
-						return (funcValue & 2099) / 1072 - 1
-					};
-					this.getValuesVisualizer = (funcValue) => (Math.floor(funcValue + 0) & 255);
-					break;
 
 				default: this.getValues = (_funcValue) => NaN;
 					this.getValues = (_funcValue) => 0;
