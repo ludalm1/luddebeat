@@ -7,7 +7,7 @@ const loadScript = src => new Promise((resolve, reject) => {
 		scriptElem.async = true;
 		scriptElem.src = src;
 		scriptElem.addEventListener('load', () => resolve());
-		scriptElem.addEventListener('error', () => {console.error(`Failed to load the script ${src}`); reject(`Failed to load the script ${src}`)});
+		scriptElem.addEventListener('error', () => { console.error(`Failed to load the script ${src}`); reject(`Failed to load the script ${src}`) });
 		document.head.appendChild(scriptElem);
 	} catch (err) {
 		console.error(err.message);
@@ -16,6 +16,7 @@ const loadScript = src => new Promise((resolve, reject) => {
 
 globalThis.bytebeat = new class {
 	constructor() {
+		this.loadEndCode = null;
 		this.audioCtx = null;
 		this.audioGain = null;
 		this.audioRecordChunks = [];
@@ -23,6 +24,7 @@ globalThis.bytebeat = new class {
 		this.audioWorkletNode = null;
 		this.byteSample = 0;
 		this.cacheParentElem = null;
+		this.waitElem = null;
 		this.cacheTextElem = null;
 		this.canvasContainer = null;
 		this.canvasCtx = null;
@@ -125,12 +127,9 @@ globalThis.bytebeat = new class {
 				const drawEndBuffer = this.drawEndBuffer[y];
 				if (drawEndBuffer) {
 					const idx = (drawWidth * (255 - y) + x) << 2;
-					if (drawEndBuffer[0] === redColor) {
-						data[idx] = redColor;
-					} else {
-						data[idx] = data[idx + 2] = drawEndBuffer[0];
-					}
+					data[idx] = drawEndBuffer[0];
 					data[idx + 1] = drawEndBuffer[1];
+					data[idx + 2] = drawEndBuffer[2];
 				}
 			}
 		}
@@ -143,18 +142,17 @@ globalThis.bytebeat = new class {
 		// Drawing in a segment
 		const isWaveform = this.settings.drawMode === 'Waveform';
 		const isDiagram = this.settings.drawMode === 'Diagram';
-		let ch, drawPoint, drawWaveLine, drawDiagram;
 		for (let i = 0; i < bufferLen; ++i) {
 			const curY = buffer[i].value;
-			const prevY = buffer[i - 1]?.value ?? [NaN, NaN];
-			const isNaNCurY = [isNaN(curY[0]), isNaN(curY[1])];
+			const prevY = buffer[i - 1]?.value ?? [NaN, NaN, NaN];
+			const isNaNCurY = [isNaN(curY[0]), isNaN(curY[1]), isNaN(curY[2])];
 			const curTime = buffer[i].t;
 			const nextTime = buffer[i + 1]?.t ?? endTime;
 			const curX = this.mod(Math.floor(this.getX(isReverse ? nextTime + 1 : curTime)) - startX, width);
 			const nextX = this.mod(Math.ceil(this.getX(isReverse ? curTime + 1 : nextTime)) - startX, width);
 			const diagramIteration = this.mod(curTime, (2 ** this.settings.drawScale))
 			// Error value - filling with red color
-			if ((isNaNCurY[0] || isNaNCurY[1])&&!isDiagram) {
+			if ((isNaNCurY[0] || isNaNCurY[1] || isNaNCurY[2]) && !isDiagram) {
 				for (let x = curX; x !== nextX; x = this.mod(x + 1, width)) {
 					for (let y = 0; y < height; ++y) {
 						const idx = (drawWidth * y + x) << 2;
@@ -164,19 +162,7 @@ globalThis.bytebeat = new class {
 					}
 				}
 			}
-			// Select mono or stereo drawing
-			if ((curY[0] === curY[1] || isNaNCurY[0] && isNaNCurY[1]) && prevY[0] === prevY[1]) {
-				drawPoint = this.drawPointMono;
-				drawWaveLine = this.drawWaveLineMono;
-				drawDiagram = this.drawDiagramMono;
-				ch = 1;
-			} else {
-				drawPoint = this.drawPointStereo;
-				drawWaveLine = this.drawWaveLineStereo;
-				drawDiagram = this.drawDiagramStereo;
-				ch = 2;
-			}
-			while (ch--) {
+			for (let ch = 0; ch < 3; ch++) {
 				if (isNaNCurY[ch] && !isDiagram) {
 					continue;
 				}
@@ -184,7 +170,7 @@ globalThis.bytebeat = new class {
 				if (!isDiagram) { // We are not drawing diagram
 					// Points drawing
 					for (let x = curX; x !== nextX; x = this.mod(x + 1, width)) {
-						drawPoint(data, (drawWidth * (255 - curYCh) + x) << 2, ch);
+						this.drawPoint(data, (drawWidth * (255 - curYCh) + x) << 2, ch);
 					}
 					// Waveform mode: vertical lines drawing
 					if (isWaveform) {
@@ -194,12 +180,12 @@ globalThis.bytebeat = new class {
 						}
 						const x = isReverse ? this.mod(Math.floor(this.getX(curTime)) - startX, width) : curX;
 						for (let dy = prevYCh < curYCh ? 1 : -1, y = prevYCh; y !== curYCh; y += dy) {
-							drawWaveLine(data, (drawWidth * (255 - y) + x) << 2, ch);
+							this.drawWaveLine(data, (drawWidth * (255 - y) + x) << 2, ch);
 						}
 					}
 				} else {//We're drawing diagram, use that
 					for (let x = curX; x !== nextX; x = this.mod(x + 1, width)) {
-						drawDiagram(data, drawWidth, x, curYCh, diagramIteration, scale, isNaNCurY[ch], ch);
+						this.drawDiagram(data, drawWidth, x, curYCh, diagramIteration, scale, isNaNCurY[ch], ch);
 					}
 				}
 			}
@@ -209,7 +195,7 @@ globalThis.bytebeat = new class {
 			const x = isReverse ? 0 : drawWidth - 1;
 			for (let y = 0; y < height; ++y) {
 				const idx = (drawWidth * (255 - y) + x) << 2;
-				this.drawEndBuffer[y] = [data[idx], data[idx + 1]];
+				this.drawEndBuffer[y] = [data[idx], data[idx + 1], data[idx + 2]];
 			}
 		}
 		// Placing a segment on the canvas
@@ -226,51 +212,21 @@ globalThis.bytebeat = new class {
 		// Clear buffer
 		this.drawBuffer = [{ t: endTime, value: buffer[bufferLen - 1].value }];
 	}
-	drawPointMono(data, i) {
-		data[i++] = data[i++] = data[i] = 255;
+	drawPoint(data, i, ch) {
+		data[i + ch] = 255;
 	}
-	drawPointStereo(data, i, ch) {
-		if (ch) {
-			data[i] = data[i + 2] = 255;
-		} else {
-			data[i + 1] = 255;
-		}
+	drawWaveLine(data, i, ch) {
+		if (data[i + ch] < 101)
+			data[i + ch] = 160;
 	}
-	drawWaveLineMono(data, i) {
-		if (!data[i + 1]) {
-			data[i++] = data[i++] = data[i] = 160;
-		}
-	}
-	drawWaveLineStereo(data, i, ch) {
-		if (ch) {
-			if (!data[i + 2]) {
-				data[i] = data[i + 2] = 160;
-			}
-		} else if (!data[++i]) {
-			data[i] = 160;
-		}
-	}
-	drawDiagramMono(data, DW, j, V, DI, scale, NaNchk) {
-		const size = Math.max(1, 256 / (2 ** scale))
-		for (let k = 0; k < size; k++) {
-			let i = ((k + (DI * size)) * DW + j) << 2
-			if(NaNchk) {
-				data[i] = 100
-			} else {
-			data[i++] = data[i++] = data[i] = V & 255;
-			}
-		}
-	}
-	drawDiagramStereo(data, DW, j, V, DI, scale, NaNchk, ch) {
+	drawDiagram(data, DW, j, V, DI, scale, NaNchk, ch) {
 		const size = 256 / (2 ** scale)
 		for (let k = 0; k < size; k++) {
 			let i = ((k + (DI * size)) * DW + j) << 2
-			if(NaNchk) {
+			if (NaNchk) {
 				data[i] = 100
-			} else if (ch == 1) {
-				data[i] = data[i + 2] = V & 255;
 			} else {
-				data[i + 1] = V & 255;
+				data[i + ch] = V & 255;
 			}
 		}
 	}
@@ -282,12 +238,13 @@ globalThis.bytebeat = new class {
 		this.containerFixedElem.classList.toggle('container-expanded');
 	}
 	generateLibraryEntry({
-		author, children, codeMinified, codeOriginal, date, description, file, fileFormatted, fileMinified,
-		fileOriginal, mode, remixed, sampleRate, starred, stereo, url
+		author, children, codeMinified, codeOriginal, cover, date, description, file, fileFormatted,
+		fileMinified, fileOriginal, mode, name, remix, sampleRate, starred, stereo, url
 	}) {
 		let entry = '';
-		if (description) {
-			entry += !url ? description : `<a href="${url}" target="_blank">${description}</a>`;
+		const noArrayUrl = url && !Array.isArray(url);
+		if (name) {
+			entry += url ? `<a href="${noArrayUrl ? url : url[0]}" target="_blank">${name}</a>` : name;
 		}
 		if (author) {
 			let authorsList = '';
@@ -295,7 +252,7 @@ globalThis.bytebeat = new class {
 			for (let i = 0, len = authorsArr.length; i < len; ++i) {
 				const authorElem = authorsArr[i];
 				if (typeof authorElem === 'string') {
-					authorsList += description || !url ? authorElem :
+					authorsList += name || !noArrayUrl ? authorElem :
 						`<a href="${url}" target="_blank">${authorElem}</a>`;
 				} else {
 					authorsList += `<a href="${authorElem[1]}" target="_blank">${authorElem[0]}</a>`;
@@ -304,15 +261,35 @@ globalThis.bytebeat = new class {
 					authorsList += ', ';
 				}
 			}
-			entry += `<span>${description ? ` (by ${authorsList})` : `by ${authorsList}`}</span>`;
+			entry += `<span>${name ? ` (by ${authorsList})` : `by ${authorsList}`}</span>`;
 		}
-		if (url && !description && !author) {
-			entry += `(<a href="${url}" target="_blank">source</a>)`;
+		if (url && (!noArrayUrl || !name && !author)) {
+			if (noArrayUrl) {
+				entry += `(<a href="${url}" target="_blank">link</a>)`;
+			} else {
+				const urlsList = [];
+				for (let i = name ? 1 : 0, len = url.length; i < len; ++i) {
+					urlsList.push(`<a href="${url[i]}" target="_blank">link${i + 1}</a>`);
+				}
+				entry += ` (${urlsList.join(', ')})`;
+			}
 		}
-		if (remixed) {
-			const { url: rUrl, description: rDescription, author: rAuthor } = remixed;
-			entry += ` (remix of ${rUrl ? `<a href="${rUrl}" target="_blank">${rDescription || rAuthor}</a>` : `"${rDescription}"`
-				}${rDescription && rAuthor ? ' by ' + rAuthor : ''})`;
+		if (cover) {
+			const { url: cUrl, name: coverName } = cover;
+			entry += ` (cover of ${cUrl ?
+				`<a href="${cUrl}" target="_blank">${coverName}</a>` :
+				`"${coverName}"`
+				})`;
+		}
+		if (remix) {
+			const arr = [];
+			const remixArr = Array.isArray(remix) ? remix : [remix];
+			for (let i = 0, len = remixArr.length; i < len; ++i) {
+				const { url: rUrl, name: remixName, author: rAuthor } = remixArr[i];
+				arr.push(`${rUrl ? `<a href="${rUrl}" target="_blank">${remixName || rAuthor}</a>` : `"${remixName}"`
+					}${remixName && rAuthor ? ' by ' + rAuthor : ''}`);
+			}
+			entry += ` (remix of ${arr.join(', ')})`;
 		}
 
 		if (date || sampleRate || mode || stereo) {
@@ -330,26 +307,31 @@ globalThis.bytebeat = new class {
 		}
 		const songData = codeOriginal || codeMinified || file ? JSON.stringify({ sampleRate, mode }) : '';
 		if (codeMinified) {
-			if (codeOriginal) {
-				entry += ` <span class="code-length" title="Size in characters">${codeMinified.length}c</span><button class="code-button code-toggle"` +
-					' title="Minified version shown. Click to view the original version.">+</button>';
-			}
+			entry += ` <span class="code-length" title="Size in characters">${codeMinified.length}c</span>` + (codeOriginal ? '<button class="code-button code-toggle"' +
+				' title="Minified version shown. Click to view the original version.">+</button>' : '');
 		} else if (codeOriginal) {
 			entry += ` <span class="code-length" title="Size in characters">${codeOriginal.length}c</span>`;
 		}
 		if (file) {
+			let codeBtn = '';
 			if (fileFormatted) {
-				entry += `<button class="code-button code-load code-load-formatted" data-songdata='${songData}' data-code-file="${file
+				codeBtn += `<button class="code-button code-load code-load-formatted" data-songdata='${songData}' data-code-file="${file
 					}" title="Click to load and play the formatted code">formatted</button>`;
 			}
 			if (fileOriginal) {
-				entry += `<button class="code-button code-load code-load-original" data-songdata='${songData}' data-code-file="${file
+				codeBtn += `<button class="code-button code-load code-load-original" data-songdata='${songData}' data-code-file="${file
 					}" title="Click to load and play the original code">original</button>`;
 			}
 			if (fileMinified) {
-				entry += `<button class="code-button code-load code-load-minified" data-songdata='${songData}' data-code-file="${file
+				codeBtn += `<button class="code-button code-load code-load-minified" data-songdata='${songData}' data-code-file="${file
 					}" title="Click to load and play the minified code">minified</button>`;
 			}
+			if (codeBtn) {
+				entry += `<div class="code-buttons-container">${codeBtn}</div>`;
+			}
+		}
+		if (description) {
+			entry += (entry ? '<br>' : '') + description;
 		}
 		if (codeOriginal) {
 			if (Array.isArray(codeOriginal)) {
@@ -368,8 +350,9 @@ globalThis.bytebeat = new class {
 			}
 			entry += `<div class="entry-children">${childrenStr}</div>`;
 		}
-		return `<div class="${codeOriginal || codeMinified || file || children ? 'entry' : 'entry-text'}${starred ? ' ' + ['star-white', 'star-green'][starred - 1] : ''}">${entry}</div>`;
+		return `<div class="${codeOriginal || codeMinified || file || children ? 'entry' : 'entry-text'}${starred ? ' ' + ['star-1', 'star-2'][starred - 1] : ''}">${entry}</div>`;
 	}
+
 	getX(t) {
 		return t / (1 << this.settings.drawScale);
 	}
@@ -480,8 +463,8 @@ globalThis.bytebeat = new class {
 		audioRecorder.addEventListener('dataavailable', e => this.audioRecordChunks.push(e.data));
 		audioRecorder.addEventListener('stop', e => {
 			let file, type;
-			const types = ['audio/mpeg', 'audio/ogg'];
-			const files = ['track.mp3', 'track.ogg'];
+			const types = ['audio/webm', 'audio/ogg'];
+			const files = ['track.webm', 'track.ogg'];
 			while ((file = files.pop()) && !MediaRecorder.isTypeSupported(type = types.pop())) {
 				if (types.length === 0) {
 					console.error('Recording is not supported in this browser!');
@@ -495,6 +478,7 @@ globalThis.bytebeat = new class {
 	initElements() {
 		// Containers
 		this.cacheParentElem = document.createElement('div');
+		this.waitElem = document.getElementById('please-wait');
 		this.cacheTextElem = document.createTextNode('');
 		this.cacheParentElem.appendChild(this.cacheTextElem);
 		this.containerFixedElem = document.getElementById('container-fixed');
@@ -553,22 +537,25 @@ globalThis.bytebeat = new class {
 			this.editorElem.value = code;
 		}
 		this.setSampleRate(this.controlSampleRate.value = +sampleRate || 8000, false);
-		const data = { mode, sampleRatio: this.songData.sampleRate / this.audioCtx.sampleRate };
+		const data = {
+			mode,
+			sampleRate: this.songData.sampleRate,
+			sampleRatio: this.songData.sampleRate / this.audioCtx.sampleRate
+		};
 		if (isPlay) {
 			this.playbackToggle(true, false);
 			data.resetTime = true;
 			data.isPlaying = isPlay;
-		} else {
-			data.setFunction = code;
 		}
+		data.setFunction = code;
 		this.sendData(data);
 		await new Promise(resolve => {
-			const LOOK=(x)=>{
-				if(typeof MAT === 'undefined') {
-					setTimeout(()=>{
-						console[x>8?'warn':'log']("Couldn't get MAT. Retrying. Attempt " + (x+1))
-						LOOK(x+1)
-					},50*Math.pow(1.2,x))
+			const LOOK = (x) => {
+				if (typeof MAT === 'undefined') {
+					setTimeout(() => {
+						console[x > 8 ? 'warn' : 'log']("Couldn't get MAT. Retrying. Attempt " + (x + 1))
+						LOOK(x + 1)
+					}, 50 * Math.pow(1.2, x))
 				} else {
 					resolve()
 				}
@@ -581,12 +568,22 @@ globalThis.bytebeat = new class {
 		return ((a % b) + b) % b;
 	}
 	async onclickCodeLoadButton(buttonElem) {
+		this.beginLoad();
 		const response = await fetch(`library/${buttonElem.classList.contains('code-load-formatted') ? 'formatted' :
-				buttonElem.classList.contains('code-load-minified') ? 'minified' :
-					buttonElem.classList.contains('code-load-original') ? 'original' : ''
+			buttonElem.classList.contains('code-load-minified') ? 'minified' :
+				buttonElem.classList.contains('code-load-original') ? 'original' : ''
 			}/${buttonElem.dataset.codeFile}`, { cache: 'no-cache' });
 		this.loadCode(Object.assign(JSON.parse(buttonElem.dataset.songdata),
 			{ code: await response.text() }));
+		this.endLoad();
+	}
+	beginLoad() {
+		this.loadEndCode = setTimeout(() => { this.waitElem.show(); }, 2000)
+	}
+	endLoad() {
+		clearTimeout(this.loadEndCode);
+		this.waitElem.close();
+		this.loadEndCode = null;
 	}
 	onclickCodeToggleButton(buttonElem) {
 		const parentElem = buttonElem.parentNode;
@@ -610,8 +607,19 @@ globalThis.bytebeat = new class {
 		state.add('loaded');
 		const waitElem = headerElem.querySelector('.loading-wait');
 		waitElem.classList.remove('hidden');
-		const response = await fetch(`./library/${containerElem.id.replace('library-', '')}.json`,
-			{ cache: 'no-cache' });
+		let response;
+		this.beginLoad();
+		try {
+			response = await fetch(`https://dollchan.net/bytebeat/library/${containerElem.id.replace('library-', '')}.json`,
+				{ cache: 'no-cache' });
+		} catch (error) {
+			if (error instanceof TypeError) {
+				console.error("CORS error detected loading library");
+			}
+			console.warn("Couldn't load up-to-date dE Library. Using fallback");
+			response = await fetch(`./library/${containerElem.id.replace('library-', '')}.json`,
+				{ cache: 'no-cache' });
+		}
 		const { status } = response;
 		waitElem.classList.add('hidden');
 		if (status !== 200 && status !== 304) {
@@ -626,6 +634,7 @@ globalThis.bytebeat = new class {
 			libraryHTML += `<div class="entry-top">${this.generateLibraryEntry(libraryArr[i])}</div>`;
 		}
 		containerElem.insertAdjacentHTML('beforeend', libraryHTML);
+		this.endLoad();
 	}
 	oninputCounter(e) {
 		if (e.key === 'Enter') {
@@ -649,7 +658,7 @@ globalThis.bytebeat = new class {
 		}
 	}
 	onresizeWindow() {
-		const isSmallWindow = window.innerWidth <= 768;
+		const isSmallWindow = window.innerWidth <= 768 || window.innerHeight <= 768;
 		if (this.canvasWidth === 1024) {
 			if (isSmallWindow) {
 				this.canvasWidth = this.canvasElem.width = 512;
@@ -666,14 +675,14 @@ globalThis.bytebeat = new class {
 		}
 		let songData;
 		if (hash.startsWith('#v3b64') || hash.startsWith('#EnBeat2-')) {
-			const hashString = hash.startsWith('#EnBeat2-') ? atob(hash.slice(9)) : atob(hash.slice(6));
-			const dataBuffer = new Uint8Array(hashString.length);
-			for (const i in hashString) {
-				if (Object.prototype.hasOwnProperty.call(hashString, i)) {
-					dataBuffer[i] = hashString.charCodeAt(i);
-				}
-			}
 			try {
+				const hashString = hash.startsWith('#EnBeat2-') ? atob(hash.slice(9)) : atob(hash.slice(6));
+				const dataBuffer = new Uint8Array(hashString.length);
+				for (const i in hashString) {
+					if (Object.prototype.hasOwnProperty.call(hashString, i)) {
+						dataBuffer[i] = hashString.charCodeAt(i);
+					}
+				}
 				songData = inflateRaw(dataBuffer, { to: 'string' });
 				if (!songData.startsWith('{')) { // XXX: old format
 					songData = { code: songData, sampleRate: 8000, mode: 'Bytebeat' };
@@ -802,7 +811,7 @@ globalThis.bytebeat = new class {
 		this.setCounterValue(this.byteSample);
 	}
 	setCodeSize(value) {
-		this.controlCodeSize.textContent = value + 'c';
+		this.controlCodeSize.textContent = `${value}c (${String(window.location).length}c)`;
 	}
 	setCounterValue(value) {
 		this.controlTime.value = this.settings.isSeconds ?
@@ -859,7 +868,10 @@ globalThis.bytebeat = new class {
 		this.toggleTimeCursor();
 		if (isSendData) {
 			this.updateUrl();
-			this.sendData({ sampleRatio: this.songData.sampleRate / this.audioCtx.sampleRate });
+			this.sendData({
+				sampleRate: this.songData.sampleRate,
+				sampleRatio: this.songData.sampleRate / this.audioCtx.sampleRate
+			});
 		}
 	}
 	setSampleDivisor(x) {
@@ -928,8 +940,10 @@ globalThis.bytebeat = new class {
 		if (this.songData.mode !== 'Bytebeat') {
 			songData.mode = this.songData.mode;
 		}
+		window.location.hash =
+			`#EnBeat2-${btoa(String.fromCharCode.apply(undefined,
+				deflateRaw(JSON.stringify(songData))
+			)).replaceAll('=', '')}`;
 		this.setCodeSize(code.length);
-		window.location.hash = `#EnBeat2-${btoa(String.fromCharCode.apply(undefined,
-			deflateRaw(JSON.stringify(songData)))).replaceAll('=', '')}`;
 	}
 }();
