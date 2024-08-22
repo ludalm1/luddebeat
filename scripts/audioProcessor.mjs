@@ -12,7 +12,9 @@ class audioProcessor extends AudioWorkletProcessor {
 		this.playbackSpeed = 1;
 		this.divisorStorage = 0;
 		this.lastTime = -1;
+		this.mode = 'Bytebeat';
 		this.outValue = [0, 0];
+		this.sampleRate = 8000;
 		this.sampleRatio = 1;
 		this.sampleDivisor/*PRO*/ = 1;
 		this.DMode = 'Bytebeat';
@@ -123,7 +125,11 @@ class audioProcessor extends AudioWorkletProcessor {
 				const currentSample = Math.floor(byteSample);
 				const DivisorMet = (((currentTime % divisor) + divisor) % divisor) == 0
 				try {
-					funcValue = this.func(currentSample);
+					if(this.mode === 'Funcbeat') {
+						funcValue = this.func(currentSample / this.sampleRate, this.sampleRate);
+					} else {
+						funcValue = this.func(currentSample);
+					}
 					if (!DivisorMet) funcValue = this.divisorStorage;
 					else this.divisorStorage = funcValue;
 				} catch (err) {
@@ -185,6 +191,7 @@ class audioProcessor extends AudioWorkletProcessor {
 			this.setSampleRatio(sampleRatio);
 		}
 		if (data.mode !== undefined) {
+			this.mode = data.mode;
 			switch (data.mode) {
 				case 'Bytebeat':
 					this.getValues = (funcValue) => (funcValue & 255) / 127.5 - 1;
@@ -196,6 +203,7 @@ class audioProcessor extends AudioWorkletProcessor {
 					this.getValuesVisualizer = (funcValue) => (funcValue + 128 & 255);
 					break;
 				case 'Floatbeat':
+				case 'Funcbeat':
 					this.getValues = (funcValue) => {
 						return Math.max(Math.min(funcValue, 1), -1);
 					};
@@ -359,6 +367,9 @@ class audioProcessor extends AudioWorkletProcessor {
 		if (data.resetTime === true) {
 			this.resetTime();
 		}
+		if(data.sampleRate !== undefined) {
+			this.sampleRate = data.sampleRate;
+		}
 		if (data.sampleRatio !== undefined) {
 			this.setSampleRatio(data.sampleRatio);
 		}
@@ -409,17 +420,24 @@ class audioProcessor extends AudioWorkletProcessor {
 		params.push('int', 'window', ...chyxNames);
 		values.push(Math.floor, globalThis, ...chyxFuncs);
 		audioProcessor.deleteGlobals();
-		// Optimize code like eval(unescape(escape`XXXX`.replace(/u(..)/g,"$1%")))
-		codeText = codeText.trim().replace(
-			/^eval\(unescape\(escape(?:`|\('|\("|\(`)(.*?)(?:`|'\)|"\)|`\)).replace\(\/u\(\.\.\)\/g,["'`]\$1%["'`]\)\)\)$/,
-			(_match, p1) => unescape(escape(p1).replace(/u(..)/g, '$1%')));
 		// Bytebeat code testing
 		let isCompiled = false;
 		const oldFunc = this.func;
 		try {
-			this.func = new Function(...params, 't', `return 0,\n${codeText || 0};`)
-				.bind(globalThis, ...values);
+			if(this.mode === 'Funcbeat') {
+				this.func = new Function(...params, codeText).bind(globalThis, ...values);
+			} else {
+				// Optimize code like eval(unescape(escape`XXXX`.replace(/u(..)/g,"$1%")))
+				codeText = codeText.trim().replace(
+					/^eval\(unescape\(escape(?:`|\('|\("|\(`)(.*?)(?:`|'\)|"\)|`\)).replace\(\/u\(\.\.\)\/g,["'`]\$1%["'`]\)\)\)$/,
+					(match, m1) => unescape(escape(m1).replace(/u(..)/g, '$1%')));
+				this.func = new Function(...params, 't', `return 0,\n${ codeText || 0 };`)
+					.bind(globalThis, ...values);
+			}
 			isCompiled = true;
+			if(this.mode === 'Funcbeat') {
+				this.func = this.func();
+			}
 			this.func(0);
 		} catch (err) {
 			if (!isCompiled) {
