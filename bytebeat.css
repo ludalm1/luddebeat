@@ -185,7 +185,7 @@ button[name="close"] {
 
 .cm-editor {
 	height: 100%;
-	background-color: #1b1d20;
+	background-color: var(--editor);
 }
 
 .cm-scroller {
@@ -223,7 +223,8 @@ button[name="close"] {
 }
 
 #error {
-	color: #f5db00;
+	color: #f92672;
+	font: 14px/14px monospace;
 	word-break: break-all;
 }
 
