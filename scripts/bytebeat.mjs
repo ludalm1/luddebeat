@@ -658,7 +658,7 @@ globalThis.bytebeat = new class {
 		}
 	}
 	onresizeWindow() {
-		const isSmallWindow = window.innerWidth <= 768;
+		const isSmallWindow = window.innerWidth <= 768 || window.innerHeight <= 768;
 		if (this.canvasWidth === 1024) {
 			if (isSmallWindow) {
 				this.canvasWidth = this.canvasElem.width = 512;
