@@ -10,7 +10,7 @@ html {
 	color-scheme: dark;
 	background-color: #000;
 	color: #c5c8c6;
-	font: var(--font-size) Moderustic;
+	font: var(--font-size) sans-serif;
 }
 
 body {
