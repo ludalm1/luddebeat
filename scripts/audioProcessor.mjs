@@ -293,7 +293,7 @@ class audioProcessor extends AudioWorkletProcessor {
 					this.getValuesVisualizer = (funcValue) => ((Math.sqrt(funcValue) * 32) & 255);
 					break;
 				case 'sinfmode':
-					this.getValues = (funcValue) => ((Math.sin(funcValue * Math.PI / 128) * 32)) / 127.5 - 1;
+					this.getValues = (funcValue) => ((Math.sin(funcValue * Math.PI / 128 * 32)) / 127.5 - 1;
 					this.getValuesVisualizer = (funcValue) => (((Math.sin(funcValue / (128 / Math.PI) + 0.01) * 128) & 255) + 127);
 					break;
 				case 'tanfmode':
@@ -357,8 +357,8 @@ class audioProcessor extends AudioWorkletProcessor {
 					this.getValuesVisualizer = (funcValue) => (Math.max(Math.min(funcValue, 2), -2) * 127.5 + 128);
 					break;
 				case 'csdmode':
-					this.getValues = (funcValue) => ((d = (funcValue) * 8 / 11025 ) | 0, (( d & 16 ) / 8-1 ) * ( d * (d ^ 15) + d)) / 127.5 - 1;
-					this.getValuesVisualizer = (funcValue) => ((d = (funcValue) * 8 / 11025 ) | 0, (( d & 16) / 8-1 ) * ( d * (d ^ 15) + d) + 127);
+					this.getValues = (funcValue) => ((Math.sin(funcValue / 5.0929567891234567891778278278278781 / 1.00000011199 + 16 / 10) / 2) * 32)) / 127.5 - 1;
+					this.getValuesVisualizer = (funcValue) => (((Math.sin(funcValue / 5.0929567891234567891778278278278781 / 1.00000011199 + 16 / 10 + 8) + 0.01) * 128) & 255) + 127);
 					break;
 
 				default: this.getValues = (_funcValue) => NaN;
