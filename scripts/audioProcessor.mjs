@@ -248,6 +248,10 @@ class audioProcessor extends AudioWorkletProcessor {
 					this.getValues = (funcValue) => ((Math.tan(funcValue) * 32) & 255) / 127.5 - 1;
 					this.getValuesVisualizer = (funcValue) => (((Math.tan(funcValue) * 128) & 255) + 127);
 					break;
+				case 'tanmodenew':
+					this.getValues = (funcValue) => ((Math.tan(funcValue) * 32)) / 127.5 - 1;
+					this.getValuesVisualizer = (funcValue) => (((Math.tan(funcValue) * 128) & 255) + 127);
+					break;
 				case 'cosmode':
 					this.getValues = (funcValue) => ((Math.cos(funcValue) * 32)) / 127.5 - 1;
 					this.getValuesVisualizer = (funcValue) => (((Math.cos(funcValue) * 128) & 255) + 127);
@@ -276,12 +280,20 @@ class audioProcessor extends AudioWorkletProcessor {
 					this.getValues = (funcValue) => ((Math.tanh(funcValue) * 32) & 255) / 127.5 - 1;
 					this.getValuesVisualizer = (funcValue) => (((Math.tanh(funcValue) * 128) & 255) + 127);
 					break;
+				case 'tanhmodenew':
+					this.getValues = (funcValue) => ((Math.tanh(funcValue) * 32)) / 127.5 - 1;
+					this.getValuesVisualizer = (funcValue) => (((Math.tanh(funcValue) * 128) & 255) + 127);
+					break;
 				case 'acosmode':
 					this.getValues = (funcValue) => ((Math.acos(funcValue) * 32) & 255) / 127.5 - 1;
 					this.getValuesVisualizer = (funcValue) => (((Math.acos(funcValue) * 128) & 255) + 127);
 					break;
 				case 'atanmode':
 					this.getValues = (funcValue) => ((Math.atan(funcValue) * 32) & 255) / 127.5 - 1;
+					this.getValuesVisualizer = (funcValue) => (((Math.atan(funcValue) * 128) & 255) + 127);
+					break;
+				case 'atanmodenew':
+					this.getValues = (funcValue) => ((Math.atan(funcValue) * 32)) / 127.5 - 1;
 					this.getValuesVisualizer = (funcValue) => (((Math.atan(funcValue) * 128) & 255) + 127);
 					break;
 				case 'log10mode':
