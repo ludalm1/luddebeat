@@ -855,6 +855,7 @@ globalThis.bytebeat = new class {
 		switch (sampleRate) {
 			case 8000:
 			case 11025:
+			case 15500:
 			case 16000:
 			case 22050:
 			case 32000:
