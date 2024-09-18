@@ -7,10 +7,10 @@
         "sampleRate": 48000
 			},
   {
-				"description": "Cool 3 channel music",
+				"description": "Cool 3 channel logmode music",
 				"codeOriginal": "[((t&t>>12|t&t>>8)&t&t>>4),t&t>>9|t&t>>2,t&t>>1]",
 				"date": "2024-09-18",
-	"mode": "Loghack2",
+	"mode": "Logmode",
         "sampleRate": 44100,
 	"stereo": true
 	
