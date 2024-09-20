@@ -23,13 +23,14 @@
 				<textarea  id="editor-default" spellcheck="false">//GFLJBEAT2
 //Fork of T-8492's bytebeat composer
 //Forked by GFLJS2100-user
-b=songs=[sin((t&t>>7)*PI/128)*127+127|cos((t)*PI/128)*127+127,400*cbrt(t%16384),sin(t/2048*(t&t>>13)*PI/128)*127+127,cos(t/2592)*127+127,sin(t/81)*127+127],
+songs=[sin((t&t>>7)*PI/128)*127+127|cos((t)*PI/128)*127+127,400*cbrt(t%16384),sin(t/16384*(t&t>>13)*PI/128)*127+127,sin(t/162)*127+127,random()*255&-t>>6,sin(t/162)*30],
 
 songs[0]%256/5+
 songs[1]%256/5+
 songs[2]%256/5+
 songs[3]%256/5+
-songs[4]%256/5</textarea>
+songs[4]%256/5+
+songs[5]%256/5</textarea>
 			</div>
 			<div class="controls" id="controls0">
 				<div class="controls-group controls-grow">
