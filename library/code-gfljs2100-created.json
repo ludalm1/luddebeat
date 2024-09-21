@@ -9,8 +9,8 @@
 			{
 				"description": "Cool 3 channel music (Play in loghack2)",
 				"codeOriginal": "[((t&t>>12|t&t>>8)&t&t>>4),t&t>>9|t&t>>2,t&t>>1]",
-				"date": "2024-07-9",
-				"sampleRate": 22050
+				"date": "2024-09-18",
+				"sampleRate": 44100
 			},
 			{
 			"description": "MẼ WĦĚŇ Ï ȘĘĒ FÌŞĦ ĦÅŘÐÇØŘÊ (remix of me when i see fish: by Consistent_Nerve_185",
