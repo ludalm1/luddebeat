@@ -374,7 +374,7 @@ class audioProcessor extends AudioWorkletProcessor {
 					break;
 				case 'Byte&beat>>12':
 					this.getValues = (funcValue) => (funcValue & funcValue >> 12 & 255) / 127.5 - 1;
-					this.getValuesVisualizer = (funcValue) => (funcValue & 255);
+					this.getValuesVisualizer = (funcValue) => (funcValue & funcValue >> 12 & 255);
 					break;
 
 				default: this.getValues = (_funcValue) => NaN;
