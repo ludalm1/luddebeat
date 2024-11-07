@@ -41,7 +41,7 @@
 			 }
         ]
     }, 			{
-				"description": "C-compatible crude sinwave dubstep",
+				"description": "C-compatible crude sinewave dubstep",
 				"codeOriginal": "(((t*(t&t>>12)*8/11025|0)&16)/8-1)*((t*(t&t>>12)*8/11025|0)*((t*(t&t>>12)*8/11025|0)^15)+(t*(t&t>>12)*8/11025|0)+127)",
 				"date": "2024-11-07",
 				"sampleRate": 44100
