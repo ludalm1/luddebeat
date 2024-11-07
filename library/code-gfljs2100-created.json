@@ -18,6 +18,12 @@
 				"date": "2024-09-30",
 				"mode": "Bitbeat"
 			},
+	{
+				"description": "C-compatible Crude Sinewave Dubstep"
+				"codeOriginal": "[((t&t>>12|t&t>>8)&t&t>>4),t&t>>9|t&t>>2,t&t>>1]",
+				"date": "2024-11-07",
+				"sampleRate": 44100
+			}
     {
         "description": "MẼ WĦĚŇ Ï ȘĘĒ FÌŞĦ ĦÅŘÐÇØŘÊ (remix of me when i see fish: by Consistent_Nerve_185",
         "children": [
@@ -43,11 +49,4 @@
 				"codeOriginal": "t/=5,[(((t&t>>12)*(t+(t>>6)^-(3&t>>4)))%(-t>>3)|t>>3|t>>9&t>>13)^(t>>11)*(t<<8),(800*cbrt(t%8192)|random()*255&-t>>5&t&800*cbrt(t%65536))]"
 
             }
-        ]
-    },		{
-				"description": "C-compatible Crude Sinewave Dubstep"
-				"codeOriginal": "[((t&t>>12|t&t>>8)&t&t>>4),t&t>>9|t&t>>2,t&t>>1]",
-				"date": "2024-11-07",
-				"sampleRate": 44100
-			}
 ]
