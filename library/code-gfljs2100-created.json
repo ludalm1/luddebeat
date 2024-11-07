@@ -18,7 +18,7 @@
 				"date": "2024-09-30",
 				"mode": "Bitbeat"
 			},
-			[{
+			{
 			"description": "MẼ WĦĚŇ Ï ȘĘĒ FÌŞĦ ĦÅŘÐÇØŘÊ (remix of me when i see fish: by Consistent_Nerve_185",
 			"children": [{
 				"description": "ORIGINAL",
@@ -38,6 +38,6 @@
 				"date": "2024-09-21",
 				"sampleRate": 88200,
 				"codeOriginal": "t/=5,[(((t&t>>12)*(t+(t>>6)^-(3&t>>4)))%(-t>>3)|t>>3|t>>9&t>>13)^(t>>11)*(t<<8),(800*cbrt(t%8192)|random()*255&-t>>5&t&800*cbrt(t%65536))]"
-			 }]]
-	}
+			 }]
+	}]
 ]
