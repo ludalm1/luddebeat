@@ -50,6 +50,8 @@
 				"description": "Funcbeat test",
 				"file": "GFLJS2100 - Funcbeat test.js",
 				"date": "2024-11-08",
+				"fileFormatted": true,
+				"fileMinified": true,
      				"fileOriginal": true,
      				"sampleRate": 48000,
 				"mode": "Funcbeat"
