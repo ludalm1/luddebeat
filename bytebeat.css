@@ -150,7 +150,7 @@ footer {
 /* ==[ Editor ] =========================================================================================== */
 
 button[name="close"] {
-	color: #abcdef;
+	color: #abb2bf;
 }
 
 .container-expanded > #editor-container {
@@ -178,8 +178,12 @@ button[name="close"] {
 	resize: none;
 }
 
+.cm-activeLine {
+	background-color: #2c3a4d50 !important;
+}
+
 .cm-content {
-	font-weight: bold;
+	font-weight: var(--code-font);
 	caret-color: #fff !important;
 }
 
@@ -188,38 +192,32 @@ button[name="close"] {
 	background-color: var(--editor);
 }
 
-.cm-scroller {
-	line-height: var(--font-size) !important;
+.cm-gutters {
+	background-color: #282c34 !important;
+	color: #7d8799 !important;
+	border: none !important;
 }
 
 .cm-matchingBracket, .cm-selectionMatch {
 	margin: -1px;
 	border: 1px solid gray;
 	border-radius: 3px;
+	background-color: #66aafe30 !important;
+}
+
+.cm-nonmatchingBracket {
+	margin: -1px;
+	border: 1px solid #db6d6d;
+	border-radius: 3px;
+	background-color: #bb555560 !important;
+}
+
+.cm-scroller {
+	line-height: var(--font-size) !important;
 }
 
 .cm-searchMatch-selected {
 	background-color: #d541ffba !important;
-}
-
-.cmt-number {
-	color: #ff8dfd;
-}
-
-.cmt-keyword, .cmt-operator {
-	color: #96cbfe;
-}
-
-.cmt-propertyName {
-	color: #ffd2a7;
-}
-
-.cmt-punctuation, .cmt-variableName {
-	color: #c5c8c6;
-}
-
-.cmt-string {
-	color: #a8ff60;
 }
 
 #error {
@@ -228,8 +226,52 @@ button[name="close"] {
 	word-break: break-all;
 }
 
+.tok-comment {
+	color: var(--code-comment);
+}
+
+.tok-definition {
+	color: var(--code-definition) !important;
+}
+
+.tok-keyword {
+	color: var(--code-keyword);
+}
+
+.tok-number {
+	color: var(--code-number);
+}
+
+.tok-operator {
+	color: var(--code-operator);
+}
+
+.tok-propertyName {
+	color: var(--code-property);
+}
+
+.tok-punctuation  {
+	color: var(--code-punctuation);
+}
+
+.cm-matchingBracket > .tok-punctuation {
+	color: #faff6f;
+}
+
+.tok-string {
+	color: var(--code-string);
+}
+
+.tok-string2 {
+	color: var(--code-string2);
+}
+
+.tok-variableName {
+	color: var(--code-variable);
+}
+
 ::selection {
-	background-color: #596999 !important;
+	background-color: #445075 !important;
 }
 
 /* ==[ Library ] ========================================================================================== */
