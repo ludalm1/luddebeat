@@ -1,11 +1,27 @@
-var APP_PREFIX = 'AndreyKondakov_';     // Identifier for this app (this needs to be consistent across every cache update)
+var APP_PREFIX = 'GFLJS2100-user_';     // Identifier for this app (this needs to be consistent across every cache update)
 var VERSION = 'version_03';         // Version of the off-line cache (change this value everytime you want to update cache)
 var CACHE_NAME = APP_PREFIX + VERSION;
 var URLS = [                            // Add URL you want to cache in this list.
-  '/andreykondakov.github.io/',                     // If you have separate JS/CSS files,
-  '/andreykondakov.github.io/index.html',            // add path to those files here
-  '/andreykondakov.github.io/js/main.js',
-  '/andreykondakov.github.io/style/style.css'
+  '/gfljs2100-user.github.io/gfljbeat2//',                     // If you have separate JS/CSS files,
+  '/gfljs2100-user.github.io/index.html',            // add path to those files here
+  '/gfljs2100-user.github.io/scripts/bytebeat.mjs',
+  '/gfljs2100-user.github.io/scripts/audioProcessor.mjs',
+  '/gfljs2100-user.github.io/scripts/codemirror-setup.mjs',
+  '/gfljs2100-user.github.io/scripts/codemirror.min.mjs',
+  '/gfljs2100-user.github.io/scripts/jquery.js',
+  '/gfljs2100-user.github.io/scripts/pako.esm.min.mjs',
+  '/gfljs2100-user.github.io/.vscode/launch.json',
+  '/gfljs2100-user.github.io/.github/workflows/jekyll-gh-pages.yml',
+  '/gfljs2100-user.github.io/.eslintrc.json',
+  '/gfljs2100-user.github.io/.gitattributes',
+  '/gfljs2100-user.github.io/.gitignore',
+  '/gfljs2100-user.github.io/bytebeat.css',
+  '/gfljs2100-user.github.io/IMG_8941.ico',
+  '/gfljs2100-user.github.io/menus.js',
+  '/gfljs2100-user.github.io/package-lock.json',
+  '/gfljs2100-user.github.io/package.json',
+  '/gfljs2100-user.github.io/rollup.config.js'
+  
 ];
 
 // Respond with cached resources
