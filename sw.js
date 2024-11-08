@@ -20,7 +20,9 @@ var URLS = [
   '/gfljbeat2/menus.js',
   '/gfljbeat2/package-lock.json',
   '/gfljbeat2/package.json',
-  '/gfljbeat2/rollup.config.js'
+  '/gfljbeat2/rollup.config.js',
+  '/gfljbeat2/LICENSE',
+  '/gfljbeat2/README.md',
 ]
 
 // Respond with cached resources
