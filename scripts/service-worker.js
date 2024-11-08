@@ -22,7 +22,6 @@ const PRECACHE_URLS = [
   'index.html',
   './', // Alias for index.html
   'bytebeat.css',
-  'bytebeat.css',
   'index.js'
 ];
 
