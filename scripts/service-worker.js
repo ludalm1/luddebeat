@@ -14,13 +14,14 @@
 // Names of the two caches used in this version of the service worker.
 // Change to v2, etc. when you update any of the local resources, which will
 // in turn trigger the install event again.
-const PRECACHE = 'precache-v1';
+const PRECACHE = 'precache-v2'; // Update the cache name to force update
 const RUNTIME = 'runtime';
 
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [
   'index.html',
   './', // Alias for index.html
+  'bytebeat.css',
   'bytebeat.css',
   'index.js'
 ];
@@ -75,6 +76,7 @@ self.addEventListener('fetch', event => {
 
 // Handle Navigation Requests
 self.addEventListener('fetch', (event) => {
+  // Handle Navigation Requests
   if (event.request.mode === 'navigate') { // Check for navigation requests
     event.respondWith(
       caches.open(RUNTIME).then(cache => {
