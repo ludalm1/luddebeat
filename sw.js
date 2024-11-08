@@ -4,7 +4,23 @@ var CACHE_NAME = APP_PREFIX + VERSION
 var URLS = [
   '/gfljbeat2/',
   '/gfljbeat2/index.html',
-  '/gfljbeat2/bytebeat.css'
+  '/gfljbeat2/bytebeat.css',
+  '/gfljbeat2/scripts/audioProcessor.mjs',
+  '/gfljbeat2/scripts/bytebeat.mjs',
+  '/gfljbeat2/scripts/codemirror-setup.mjs',
+  '/gfljbeat2/scripts/codemirror.min.mjs',
+  '/gfljbeat2/scripts/jquery.js',
+  '/gfljbeat2/scripts/pako.esm.min.mjs',
+  '/gfljbeat2/.github/workflows/jekyll-gh-pages.yml',
+  '/gfljbeat2/.vscode/launch.json',
+  '/gfljbeat2/.eslintrc.json',
+  '/gfljbeat2/.gitattributes',
+  '/gfljbeat2/.gitignore',
+  '/gfljbeat2/IMG_8941.ico',
+  '/gfljbeat2/menus.js',
+  '/gfljbeat2/package-lock.json',
+  '/gfljbeat2/package.json',
+  '/gfljbeat2/rollup.config.js'
 ]
 
 // Respond with cached resources
