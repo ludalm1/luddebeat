@@ -20,7 +20,8 @@ var URLS = [                            // Add URL you want to cache in this lis
   '/gfljs2100-user.github.io/menus.js',
   '/gfljs2100-user.github.io/package-lock.json',
   '/gfljs2100-user.github.io/package.json',
-  '/gfljs2100-user.github.io/rollup.config.js'
+  '/gfljs2100-user.github.io/rollup.config.js',
+  '/gfljs2100-user.github.io/main.js'
   
 ];
 
