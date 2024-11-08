@@ -45,5 +45,13 @@
 				"codeOriginal": "(((t*(t&t>>12)*8/11025|0)&16)/8-1)*((t*(t&t>>12)*8/11025|0)*((t*(t&t>>12)*8/11025|0)^15)+(t*(t&t>>12)*8/11025|0)+127)",
 				"date": "2024-11-07",
 				"sampleRate": 44100
+			},
+			{
+				"description": "Funcbeat test",
+				"file": "GFLJS2100 - Funcbeat test.js",
+				"date": "2024-11-08",
+     				"fileOriginal": true,
+     				"sampleRate": 48000,
+				"mode": "Funcbeat"
 			}
 ]
