@@ -1,6 +1,6 @@
 // register ServiceWorker, remember to use absolute path!
 // if (navigator.serviceWorker) {
-//   navigator.serviceWorker.register('/andreykondakov.github.io/sw.js', {scope: '/andreykondakov.github.io/'})
+//   navigator.serviceWorker.register('/gfljs2100-user.github.io/gfljbeat2/sw.js', {scope: '/gfljs2100-user.github.io/gfljbeat2/'})
 // }
 
 if ('serviceWorker' in navigator) {
