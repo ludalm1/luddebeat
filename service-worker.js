@@ -73,3 +73,32 @@ self.addEventListener('fetch', event => {
     );
   }
 });
+
+// Handle Navigation Requests
+self.addEventListener('fetch', (event) => {
+  if (event.request.mode === 'navigate') { // Check for navigation requests
+    event.respondWith(
+      caches.open(RUNTIME).then(cache => {
+        // Check for updated resources
+        if (event.request.url.startsWith(self.location.origin)) {
+          return caches.match(event.request.url).then(cachedResponse => {
+            if (!cachedResponse) {
+              // If not cached, fetch and cache
+              return fetch(event.request).then(response => {
+                return cache.put(event.request.url, response.clone()).then(() => {
+                  return response;
+                });
+              });
+            } else {
+              // Use the cached response
+              return cachedResponse;
+            }
+          });
+        } else {
+          // Handle cross-origin navigation (if needed)
+          return fetch(event.request.url);
+        }
+      })
+    );
+  }
+});
