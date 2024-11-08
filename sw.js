@@ -1,4 +1,4 @@
-var APP_PREFIX = 'translucent_'
+var APP_PREFIX = 'gfljbeat2_'
 var VERSION = 'version_02'
 var CACHE_NAME = APP_PREFIX + VERSION
 var URLS = [
