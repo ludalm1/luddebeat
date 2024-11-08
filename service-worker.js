@@ -21,8 +21,8 @@ const RUNTIME = 'runtime';
 const PRECACHE_URLS = [
   'index.html',
   './', // Alias for index.html
-  'styles.css',
-  '../../styles/main.css',
+  'bytebeat.css',
+  'bytebeat.css',
   'index.js'
 ];
 
