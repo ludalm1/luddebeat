@@ -4,5 +4,5 @@
 // }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/gfljbeat2/ws
+  navigator.serviceWorker.register('/gfljbeat2/sw.js'
 }
