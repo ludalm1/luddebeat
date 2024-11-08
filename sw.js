@@ -3,25 +3,25 @@ var VERSION = 'version_03';         // Version of the off-line cache (change thi
 var CACHE_NAME = APP_PREFIX + VERSION;
 var URLS = [                            // Add URL you want to cache in this list.
   '/gfljs2100-user.github.io/gfljbeat2/',                     // If you have separate JS/CSS files,
-  '/gfljs2100-user.github.io/index.html',            // add path to those files here
-  '/gfljs2100-user.github.io/scripts/bytebeat.mjs',
-  '/gfljs2100-user.github.io/scripts/audioProcessor.mjs',
-  '/gfljs2100-user.github.io/scripts/codemirror-setup.mjs',
-  '/gfljs2100-user.github.io/scripts/codemirror.min.mjs',
-  '/gfljs2100-user.github.io/scripts/jquery.js',
-  '/gfljs2100-user.github.io/scripts/pako.esm.min.mjs',
-  '/gfljs2100-user.github.io/.vscode/launch.json',
-  '/gfljs2100-user.github.io/.github/workflows/jekyll-gh-pages.yml',
-  '/gfljs2100-user.github.io/.eslintrc.json',
-  '/gfljs2100-user.github.io/.gitattributes',
-  '/gfljs2100-user.github.io/.gitignore',
-  '/gfljs2100-user.github.io/bytebeat.css',
-  '/gfljs2100-user.github.io/IMG_8941.ico',
-  '/gfljs2100-user.github.io/menus.js',
-  '/gfljs2100-user.github.io/package-lock.json',
-  '/gfljs2100-user.github.io/package.json',
-  '/gfljs2100-user.github.io/rollup.config.js',
-  '/gfljs2100-user.github.io/main.js'
+  '/gfljs2100-user.github.io/gfljbeat2/index.html',            // add path to those files here
+  '/gfljs2100-user.github.io/gfljbeat2/scripts/bytebeat.mjs',
+  '/gfljs2100-user.github.io/gfljbeat2/scripts/audioProcessor.mjs',
+  '/gfljs2100-user.github.io/gfljbeat2/scripts/codemirror-setup.mjs',
+  '/gfljs2100-user.github.io/gfljbeat2/scripts/codemirror.min.mjs',
+  '/gfljs2100-user.github.io/gfljbeat2/scripts/jquery.js',
+  '/gfljs2100-user.github.io/gfljbeat2/scripts/pako.esm.min.mjs',
+  '/gfljs2100-user.github.io/gfljbeat2/.vscode/launch.json',
+  '/gfljs2100-user.github.io/gfljbeat2/.github/workflows/jekyll-gh-pages.yml',
+  '/gfljs2100-user.github.io/gfljbeat2/.eslintrc.json',
+  '/gfljs2100-user.github.io/gfljbeat2/.gitattributes',
+  '/gfljs2100-user.github.io/gfljbeat2/.gitignore',
+  '/gfljs2100-user.github.io/gfljbeat2/bytebeat.css',
+  '/gfljs2100-user.github.io/gfljbeat2/IMG_8941.ico',
+  '/gfljs2100-user.github.io/gfljbeat2/menus.js',
+  '/gfljs2100-user.github.io/gfljbeat2/package-lock.json',
+  '/gfljs2100-user.github.io/gfljbeat2/package.json',
+  '/gfljs2100-user.github.io/gfljbeat2/rollup.config.js',
+  '/gfljs2100-user.github.io/gfljbeat2/main.js'
   
 ];
 
