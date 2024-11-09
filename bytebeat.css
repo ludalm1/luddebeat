@@ -1,3 +1,28 @@
+/* ==[ Themes ] =========================================================================================== */
+#editor-container[data-theme="One Dark"] {
+	--code-definition: #abb2bf;
+	--code-keyword: #c678dd;
+	--code-number: #e5c07b;
+	--code-operator: #56b6c2;
+	--code-property: #61afef;
+	--code-punctuation: #abb2bf;
+	--code-string: #98c379;
+	--code-variable: #e06c75;
+}
+
+#editor-container[data-theme="SArpnt"] {
+	--code-comment: #5c4;
+	--code-definition: #9de;
+	--code-font: normal;
+	--code-keyword: #e8e;
+	--code-number: #ada;
+	--code-operator: #eee;
+	--code-property: #eea;
+	--code-punctuation: #eee;
+	--code-string: #fa7;
+	--code-string2: #f78;
+	--code-variable: #9de;
+}
 /* ==[ Document ] ========================================================================================= */
 
 :root {
