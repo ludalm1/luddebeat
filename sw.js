@@ -1,5 +1,5 @@
-var APP_PREFIX = 'gfljbeatcache_'
-var VERSION = 'version_3'
+var APP_PREFIX = 'gfljbeat2_'
+var VERSION = 'version_4'
 var CACHE_NAME = APP_PREFIX + VERSION
 var URLS = [
   '/gfljbeat2/',
