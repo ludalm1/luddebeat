@@ -12,7 +12,6 @@ var URLS = [
   '/gfljbeat2/scripts/codemirror.min.mjs',
   '/gfljbeat2/scripts/jquery.js',
   '/gfljbeat2/scripts/pako.esm.min.mjs',
-  '/gfljbeat2/.github/workflows/jekyll-gh-pages.yml',
   '/gfljbeat2/.vscode/launch.json',
   '/gfljbeat2/.eslintrc.json',
   '/gfljbeat2/.gitattributes',
