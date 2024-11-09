@@ -97,6 +97,7 @@ songs[5]%256/5</textarea>
 					<option class="song-options"  value="1" title="MODE, SAMPLERATE, DIVISOR" selected>MENU 1 - SONG OPTIONS</option>
 					<option class="song-options"  value="2">MENU 2 - TRANSFORMATIONS</option>
 					<option class="song-options"  value="3">MENU 3 - DETAILS</option>
+					<option class="song-options"  value="4">MENU 4 - EXTRA</option>
 					<!--option value="2" title="MENU 2- TEST">MENU 2 - TEST</option-->
 				</select>
 			</div>
@@ -180,6 +181,9 @@ songs[5]%256/5</textarea>
 			</div>
 			<div class="controls hidden" id="controls3">
 				<input type="checkbox" onchange="MAT.switch(this.checked)">Toggle extra library buttons
+			</div>
+			<div class="controls hidden" id="controls4">
+				<input type="checkbox" id="fixiosaudio">Fix IOS audio
 			</div>
 			<div id="error"></div>
 			<div id="canvas-container" title="Click to play">
