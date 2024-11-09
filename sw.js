@@ -22,6 +22,7 @@ var URLS = [
   '/gfljbeat2/rollup.config.js',
   '/gfljbeat2/LICENSE',
   '/gfljbeat2/README.md',
+  '/gfljbeat2/service-worker.js'
 ]
 
 // Respond with cached resources
