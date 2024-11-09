@@ -10,7 +10,6 @@ var URLS = [
   '/gfljbeat2/scripts/codemirror-setup.mjs',
   '/gfljbeat2/scripts/codemirror.min.mjs',
   '/gfljbeat2/scripts/jquery.js',
-
   '/gfljbeat2/scripts/pako.esm.min.mjs',
   '/gfljbeat2/.vscode/launch.json',
   '/gfljbeat2/.eslintrc.json',
