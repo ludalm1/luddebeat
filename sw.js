@@ -3,7 +3,6 @@ var VERSION = 'version_3'
 var CACHE_NAME = APP_PREFIX + VERSION
 var URLS = [
   '/gfljbeat2/',
-  '/gfljbeat2/indexoffline.html',
   '/gfljbeat2/index.html',
   '/gfljbeat2/bytebeat.css',
   '/gfljbeat2/scripts/audioProcessor.mjs',
