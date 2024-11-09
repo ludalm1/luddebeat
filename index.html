@@ -183,8 +183,9 @@ songs[5]%256/5</textarea>
 				<input type="checkbox" onchange="MAT.switch(this.checked)">Toggle extra library buttons
 			</div>
 			<div class="controls hidden" id="controls4">
-				<input type="checkbox" id="fixiosaudio">Fix IOS audio
-			</div>
+			<button id="fixiosaudio" class="control-button text-padding" title="Fixes iOS audio." onclick="MAT.commaFormat(false)">
+				Fix iOS audio
+			</button>
 			<div id="error"></div>
 			<div id="canvas-container" title="Click to play">
 				<canvas id="canvas-main" width="1024" height="256"></canvas>
